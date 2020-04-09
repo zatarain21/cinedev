@@ -1,0 +1,33 @@
+            
+{# header webcomponent from static-cinepolis the order of load html file and rel=import #}
+{{'<script src="https://cinepolisdev02.kambaal.com/dev/bower_components/webcomponentsjs/webcomponents-loader.js"></script>'}}
+{{'<script src="https://unpkg.com/vue"></script>'}}
+{{'<script src="https://cinepolisdev02.kambaal.com/dev/cin-navbar.min.js"></script>'}}
+{{ pimcore_head_link() }}
+
+
+{#header#}
+<header>
+    <cin-navbar logo="{{ pimcore_image("homeLogo").getSrc() }}"></cin-navbar>
+</header>
+{% if editmode %}
+    {{ pimcore_image("homeLogo", {
+        "title": "Arrastra un image para sustituir el logo",
+        "width": 200,
+        "height": 200,
+        "thumbnail": "contentimages"
+    }) }}
+            {{ pimcore_select("contexto-page", {
+                    "store": [
+                        ["home", "home"],
+                        ["salasvip", "salasvip"],
+                        ["salasarte", "salasarte"]
+                    ],
+                    "reload": true
+                }) }}
+{% endif %}
+        
+{#Load js#}
+{% block headscripts deferred %}
+    {{ pimcore_head_script() }}
+{% endblock %}

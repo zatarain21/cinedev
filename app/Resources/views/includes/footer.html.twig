@@ -1,0 +1,70 @@
+{% if editmode %}
+    {% do pimcore_head_link().appendStylesheet(asset('static/css/editmode.css')) %}
+{% endif %}
+
+{# add global stylesheets and scripts outside of any blocsk to add them to the helpers before any others assets are added #}
+{# we use the view helper to have cache buster functionality #}
+
+{% do pimcore_head_link().appendStylesheet('https://fonts.googleapis.com/css?family=Hind+Guntur:300,400,500,600,700&display=swap') %}
+{% do pimcore_head_link().appendStylesheet('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css',null,null,{integrity:"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T",crossorigin:"anonymous"}) %}
+{% do pimcore_head_link().appendStylesheet('https://use.fontawesome.com/releases/v5.9.0/css/all.css') %}
+
+{% if not editmode %}
+    {% do pimcore_head_link().appendStylesheet(asset('static/css/global.css')) %}
+{% endif %}
+
+            {# header webcomponent from static-cinepolis the order of load html file and rel=import #}
+
+
+            {% do pimcore_head_script().appendFile('https://code.jquery.com/jquery-3.3.1.slim.min.js',null,null,{ integrity:"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo",crossorigin:"anonymous"}) %}
+            {% do pimcore_head_script().appendFile('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js',null,null,{ integrity:"sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM",crossorigin:"anonymous"}) %}
+
+
+            {% if not document is defined or not document %}
+                {% set document = pimcore_document(1) %}
+            {% endif %}
+
+
+    {{ pimcore_head_link() }}
+
+{#footer#}
+<footer>
+
+    <hr>
+    <div class="row">
+        <div class="col-4 col-md">
+            <h4>{{ pimcore_input("blockTitle1") }}</h4>
+            <ul>
+                {% for i in pimcore_iterate_block(pimcore_block('linkblock1')) %}
+                    <li>{{ pimcore_link('myLink', {'class': "special-link-class"}) }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-4 col-md">
+            <h4>{{ pimcore_input("blockTitle2") }}</h4>
+            <ul>
+                {% for i in pimcore_iterate_block(pimcore_block('linkblock2')) %}
+                    <li>{{ pimcore_link('myLink', {'class': "special-link-class"}) }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="col-4 col-md">
+            <h4>{{ pimcore_input("blockTitle3") }}</h4>
+            <ul>
+                <li><i class="far fa-file-alt"></i> <a href=#>{{ pimcore_input("item1") }}</a></li>
+                <li><i class="far fa-envelope"></i> <a href=#>{{ pimcore_input("item2") }}</a></li>
+                <li><i class="far fa-comment-dots"></i> <a href=#>{{ pimcore_input("item3") }}</a></li>
+                <li><i class="fas fa-birthday-cake"></i> <a href=#>{{ pimcore_input("item4") }}</a></li>
+            </ul>
+        </div>
+    </div>
+    <br><hr><br>
+    <h4 class="phone"><i class="fab fa-whatsapp"></i>{{ pimcore_input("phone") }}</h4>
+    <br>
+</footer>
+
+{#Load js#}
+{% block headscripts deferred %}
+    {{ pimcore_head_script() }}
+{% endblock %}

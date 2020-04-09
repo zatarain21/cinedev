@@ -1,0 +1,69 @@
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        # automatically injects dependencies in your services
+        autowire: true
+        # automatically registers your services as commands, event subscribers, etc.
+        autoconfigure: true
+        # this means you cannot fetch services directly from the container via $container->get()
+        # if you need to do this, you can override this setting on individual services
+        public: false
+
+    # Example custom templating helper
+    # AppBundle\Templating\Helper\Example:
+    #     # templating helpers need to be public as they
+    #     # are fetched from the container on demand
+    #     public: true
+    #     tags:
+    #         - { name: templating.helper, alias: fooBar }
+
+    # Example event listener for objects
+    # AppBundle\EventListener\TestListener:
+    #     tags:
+    #         - { name: kernel.event_listener, event: pimcore.dataobject.preUpdate, method: onObjectPreUpdate }
+    # ---------------------------------------------------------
+    # Twig Extensions
+    # ---------------------------------------------------------
+    AppBundle\Twig\Extension\CategoryFilterExtension:
+        tags: ['twig.extension']
+
+    AppBundle\Twig\Extension\Country:
+        tags: ['twig.extension']
+
+    AppBundle\Twig\Extension\Currency:
+        tags: ['twig.extension']
+
+    AppBundle\Twig\Extension\GeneralFilterExtension:
+        tags: ['twig.extension']
+
+    AppBundle\Twig\Extension\NavigationExtension:
+        tags: ['twig.extension']
+
+    AppBundle\Twig\Extension\UniqidExtension:
+        tags: ['twig.extension']
+
+    AppBundle\Twig\Extension\LanguageSwitcherExtension:
+        tags: ['twig.extension']
+
+    AppBundle\Twig\Extension\ProductPageExtension:
+        tags: ['twig.extension']
+
+    AppBundle\Twig\Extension\NewsExtension:
+        tags: ['twig.extension']
+
+    AppBundle\Twig\Extension\PrintCatalogExtension:
+        tags: ['twig.extension']
+
+
+    # ---------------------------------------------------------
+    # Link Generators for DataObjects
+    # ---------------------------------------------------------
+    AppBundle\Website\LinkGenerator\CategoryLinkGenerator:
+        public: true
+
+    AppBundle\Website\LinkGenerator\ProductLinkGenerator:
+        public: true
+
+    AppBundle\Website\LinkGenerator\NewsLinkGenerator:
+        public: true
+

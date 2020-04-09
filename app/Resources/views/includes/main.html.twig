@@ -1,0 +1,8 @@
+<main>
+    {{ include('includes/hero-carousel.html.twig') }}
+    
+    {{ pimcore_areablock("myAreablock", {
+            "allowed": ["blockquote","","headlines"],
+        })
+    }}
+</main>

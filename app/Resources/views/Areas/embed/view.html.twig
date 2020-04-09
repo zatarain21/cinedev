@@ -1,0 +1,16 @@
+<google-map id="theMap" latitude="37.77493" longitude="-122.41942" zoom="12" 
+    disable-default-ui="true" disable-street-view-control="true" 
+    api-key="AIzaSyD0Mzdz3SkAIE-5gQXWmM8UusBEc0wZb_4">
+</google-map>
+
+    <script>
+        function setMapLoc(lat, long) {
+            document.getElementById("theMap").latitude = lat;
+            document.getElementById("theMap").longitude = long;
+        }
+        window.addEventListener("load", evt => {
+            document.getElementById("sf").addEventListener("click", e => { setMapLoc(37.77493, -122.41942); })
+            document.getElementById("nyc").addEventListener("click", e => { setMapLoc(40.7128, -74.0059); })
+            document.getElementById("sea").addEventListener("click", e => { setMapLoc(47.6062, -122.3321); })
+        })
+    </script>

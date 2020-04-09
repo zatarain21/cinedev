@@ -1,0 +1,45 @@
+            
+{# Web Components polyfill and Polymer library includes #}
+{{'<script src="https://cinepolisdev02.kambaal.com/dev/bower_components/webcomponentsjs/webcomponents-loader.js"></script>'}}
+{{'<link rel="import" href="https://cinepolisdev02.kambaal.com/dev/bower_components/google-map/google-map.html">'}}
+{{'<link rel="import" href="https://cinepolisdev02.kambaal.com/dev/bower_components/paper-button/paper-button.html">'}}
+{{ pimcore_head_link() }}
+
+{#mapa#}
+
+            
+
+
+
+{{ pimcore_head_link() }}
+
+        <div id="example">
+            <paper-button raised id="sf">San Francisco</paper-button>
+            <paper-button raised id="nyc">New York</paper-button>
+            <paper-button raised id="sea">Seattle</paper-button>
+
+            <!-- google-map is part of the GoogleWebComponents collection -->
+            <google-map id="theMap" latitude="37.77493" longitude="-122.41942" zoom="12" 
+                    disable-default-ui="true" disable-street-view-control="true" 
+                    api-key="AIzaSyD0Mzdz3SkAIE-5gQXWmM8UusBEc0wZb_4">
+            </google-map>
+        </div>
+
+
+
+    <script>
+        function setMapLoc(lat, long) {
+            document.getElementById("theMap").latitude = lat;
+            document.getElementById("theMap").longitude = long;
+        }
+        window.addEventListener("load", evt => {
+            document.getElementById("sf").addEventListener("click", e => { setMapLoc(37.77493, -122.41942); })
+            document.getElementById("nyc").addEventListener("click", e => { setMapLoc(40.7128, -74.0059); })
+            document.getElementById("sea").addEventListener("click", e => { setMapLoc(47.6062, -122.3321); })
+        })
+    </script>
+
+{#Load js#}
+{% block headscripts deferred %}
+    {{ pimcore_head_script() }}
+{% endblock %}
